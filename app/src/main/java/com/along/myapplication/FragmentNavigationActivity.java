@@ -1,9 +1,9 @@
 package com.along.myapplication;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class FragmentNavigationActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,View.OnClickListener,MyFragment2.Mylistener {
+public class FragmentNavigationActivity extends Activity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, MyFragment2.Mylistener {
     private TextView textView;
     private Button button_fragment;
     private RadioGroup radioGroup;
@@ -27,9 +27,12 @@ public class FragmentNavigationActivity extends AppCompatActivity implements Rad
     private MyFragment1 myFragment1;
     private MyFragment2 myFragment2;
     private FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.fragment_navigation);
         init();
     }
@@ -52,43 +55,43 @@ public class FragmentNavigationActivity extends AppCompatActivity implements Rad
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
         switch (checkedId) {
-                case R.id.radioButton: {
-                    break;
-                }
-                case R.id.radioButton2: {
-                    myFragment1 = new MyFragment1();
-                    FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
-                    beginTransaction.add(R.id.linearlayout, myFragment1,"myFragment1");
-                    beginTransaction.attach(myFragment1);
-                    beginTransaction.addToBackStack(null);
-                    beginTransaction.commit();
-                    Log.d(TAG, "点了第二个按钮");
-                    break;
-                }
-                case R.id.radioButton3: {
-                    FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
-                    beginTransaction.remove(myFragment1);
-                    beginTransaction.remove(myFragment2);
-                    beginTransaction.addToBackStack(null);
-                    beginTransaction.commit();
-                    Log.d(TAG, "点了第三个按钮");
-                    break;
-                }
-                case R.id.radioButton4: {
-                    myFragment2 = new MyFragment2();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name",editText.getText().toString());
-                    myFragment2.setArguments(bundle);
-                    FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
-                    beginTransaction.add(R.id.linearlayout, myFragment2,"myFragment2");
-                    beginTransaction.attach(myFragment2);
-                    beginTransaction.addToBackStack(null);
-                    beginTransaction.commit();
-                    Log.d(TAG, "点了第四个按钮");
-                    break;
-                }
+            case R.id.radioButton: {
+                break;
+            }
+            case R.id.radioButton2: {
+                myFragment1 = new MyFragment1();
+                FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
+                beginTransaction.add(R.id.linearlayout, myFragment1, "myFragment1");
+                beginTransaction.attach(myFragment1);
+                beginTransaction.addToBackStack(null);
+                beginTransaction.commit();
+                Log.d(TAG, "点了第二个按钮");
+                break;
+            }
+            case R.id.radioButton3: {
+                FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
+                beginTransaction.remove(myFragment1);
+                beginTransaction.remove(myFragment2);
+                beginTransaction.addToBackStack(null);
+                beginTransaction.commit();
+                Log.d(TAG, "点了第三个按钮");
+                break;
+            }
+            case R.id.radioButton4: {
+                myFragment2 = new MyFragment2();
+                Bundle bundle = new Bundle();
+                bundle.putString("name", editText.getText().toString());
+                myFragment2.setArguments(bundle);
+                FragmentTransaction beginTransaction = fragmentManager.beginTransaction();
+                beginTransaction.add(R.id.linearlayout, myFragment2, "myFragment2");
+                beginTransaction.attach(myFragment2);
+                beginTransaction.addToBackStack(null);
+                beginTransaction.commit();
+                Log.d(TAG, "点了第四个按钮");
+                break;
             }
         }
+    }
 
     @Override
     public void onClick(View v) {
@@ -97,6 +100,6 @@ public class FragmentNavigationActivity extends AppCompatActivity implements Rad
 
     @Override
     public void thank(String code) {
-        Toast.makeText(this,code,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, code, Toast.LENGTH_SHORT).show();
     }
 }

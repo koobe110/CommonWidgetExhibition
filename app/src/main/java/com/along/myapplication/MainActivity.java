@@ -1,7 +1,6 @@
 package com.along.myapplication;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -9,18 +8,24 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
+import com.along.myapplication.RecyclerView.RecyclerViewActivity;
+import com.along.myapplication.animation.AnimMainActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
     private GridView gridView;
     private List<Map<String, Object>> datalist;
     private SimpleAdapter sim_Adapter;
-    int[] icon_imageNum = new int[]{R.drawable.calendar, R.drawable.address_book, R.drawable.camera, R.drawable.clock, R.drawable.games_control, R.drawable.messenger, R.drawable.ringtone, R.drawable.settings, R.drawable.speech_balloon, R.drawable.weather, R.drawable.world, R.drawable.piano};
-    String[] icon_name = new String[]{"Handler", "Service", "Broadcast", "内容提供者", "读取文件", "ListView", "常见控件", "高级控件", "Fragment", "自带浏览器", "WebView", "总结"};
+    int[] icon_imageNum = new int[]{R.drawable.calendar, R.drawable.address_book, R.drawable.camera, R.drawable.clock,
+            R.drawable.games_control, R.drawable.messenger, R.drawable.ringtone, R.drawable.settings, R.drawable.speech_balloon,
+            R.drawable.weather, R.drawable.world, R.drawable.picasa, R.drawable.piano, R.drawable.backup, R.drawable.right};
+    String[] icon_name = new String[]{"Handler", "Service", "Broadcast", "Content\nProvider",
+            "File IO", "ListView\nViewHodler", "ScrollView", "ViewPager", "Fragment",
+            "View\nFlipper", "WebView", "AsyncTask", "Animation", "RecyclerView", "summary"};
     String url = "http://www.baidu.com";
 
     @Override
@@ -55,32 +60,44 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intentMainToFirstActivity, 4);
                 }
                 if (position == 5) {
-                    Intent intentMainToFirstActivity = new Intent(MainActivity.this, ListActivity.class);
+                    Intent intentMainToFirstActivity = new Intent(MainActivity.this, ListViewActivity.class);
                     startActivityForResult(intentMainToFirstActivity, 5);
                 }
                 if (position == 6) {
-                    Intent intentMainToFirstActivity = new Intent(MainActivity.this, CommonWidgetActivity.class);
+                    Intent intentMainToFirstActivity = new Intent(MainActivity.this, ScrollViewActivity.class);
                     startActivityForResult(intentMainToFirstActivity, 6);
                 }
                 if (position == 7) {
-
+                    Intent intent3toFragmentNavigation = new Intent(MainActivity.this, ViewPagerActivity.class);
+                    startActivityForResult(intent3toFragmentNavigation, 8);
                 }
                 if (position == 8) {
                     Intent intent3toFragmentNavigation = new Intent(MainActivity.this, FragmentNavigationActivity.class);
                     startActivityForResult(intent3toFragmentNavigation, 8);
                 }
                 if (position == 9) {
-                    Uri uri = Uri.parse(url);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    startActivity(intent);
+                    Intent intent3toFragmentNavigation = new Intent(MainActivity.this, ViewFlipperActivity.class);
+                    startActivityForResult(intent3toFragmentNavigation, 8);
                 }
                 if (position == 10) {
                     Intent intent3toWebView = new Intent(MainActivity.this, web.class);
                     startActivityForResult(intent3toWebView, 10);
                 }
                 if (position == 11) {
-                    Intent intent3to4 = new Intent(MainActivity.this, ProgressbarActivity.class);
+                    Intent intent3to4 = new Intent(MainActivity.this, AsyncTaskImageDownloadActivity.class);
                     startActivityForResult(intent3to4, 11);
+                }
+                if (position == 12) {
+                    Intent intent3to4 = new Intent(MainActivity.this, AnimMainActivity.class);
+                    startActivityForResult(intent3to4, 12);
+                }
+                if (position == 13) {
+                    Intent intent3to4 = new Intent(MainActivity.this, RecyclerViewActivity.class);
+                    startActivityForResult(intent3to4, 13);
+                }
+                if (position == 14) {
+                    Intent intent3to4 = new Intent(MainActivity.this, ProgressbarActivity.class);
+                    startActivityForResult(intent3to4, 14);
                 }
             }
         });

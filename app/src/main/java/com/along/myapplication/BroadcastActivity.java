@@ -44,46 +44,49 @@ public class BroadcastActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.buttonCreadReceiver1:{
+        switch (v.getId()) {
+            case R.id.buttonCreadReceiver1: {
                 Receiver1 = new BC1();
-                IntentFilter intentFilter= new IntentFilter("MyAction");
+                IntentFilter intentFilter = new IntentFilter("MyAction");
                 registerReceiver(Receiver1, intentFilter);
                 textViewBroadcast.append("动态产生了广播接收者1\n");
                 break;
             }
-            case R.id.buttonCreadReceiver2:{
+            case R.id.buttonCreadReceiver2: {
                 Receiver2 = new BC2();
-                IntentFilter intentFilter= new IntentFilter("MyAction");
+                IntentFilter intentFilter = new IntentFilter("MyAction");
                 registerReceiver(Receiver2, intentFilter);
                 textViewBroadcast.append("动态产生了广播接收者2\n");
                 break;
             }
-            case R.id.buttonBroadcast:{
+            case R.id.buttonBroadcast: {
                 Intent intent = new Intent("MyAction");
                 sendBroadcast(intent);
                 break;
 
             }
-            case R.id.buttonBroadcast2:{
+            case R.id.buttonBroadcast2: {
                 Intent intent = new Intent("MyAction");
-                sendOrderedBroadcast(intent,null);
+                sendOrderedBroadcast(intent, null);
                 break;
 
             }
         }
     }
-    public  class BC1 extends BroadcastReceiver{
-        public BC1(){
+
+    public class BC1 extends BroadcastReceiver {
+        public BC1() {
 
         }
+
         @Override
         public void onReceive(Context context, Intent intent) {
             textViewBroadcast.append("动态接受者1，收到广播\n");
             abortBroadcast();
         }
     }
-    public  class BC2 extends BroadcastReceiver{
+
+    public class BC2 extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {

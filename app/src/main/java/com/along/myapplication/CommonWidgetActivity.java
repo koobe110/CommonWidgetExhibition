@@ -101,7 +101,7 @@ public class CommonWidgetActivity extends AppCompatActivity implements View.OnCl
         buttonToSec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1to2 = new Intent(CommonWidgetActivity.this, ListActivity.class);
+                Intent intent1to2 = new Intent(CommonWidgetActivity.this, ListViewActivity.class);
                 startActivityForResult(intent1to2, 1);
             }
         });
@@ -176,10 +176,6 @@ public class CommonWidgetActivity extends AppCompatActivity implements View.OnCl
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:id="@+id/imageView2"
         android:src="@drawable/huoguo"
         android:layout_gravity="center" />
@@ -16,5 +16,5 @@
         android:text="New Text"
         android:id="@+id/textView"
         android:layout_gravity="center"
-        android:textSize="20dp" />
+        android:textSize="18sp" />
 </LinearLayout>
