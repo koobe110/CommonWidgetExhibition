@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
     private SimpleAdapter sim_Adapter;
     int[] icon_imageNum = new int[]{R.drawable.calendar, R.drawable.address_book, R.drawable.camera, R.drawable.clock,
             R.drawable.games_control, R.drawable.messenger, R.drawable.ringtone, R.drawable.settings, R.drawable.speech_balloon,
-            R.drawable.weather, R.drawable.world, R.drawable.picasa, R.drawable.piano, R.drawable.backup, R.drawable.right};
+            R.drawable.weather, R.drawable.world, R.drawable.picasa, R.drawable.piano, R.drawable.backup, R.drawable.weather_widget, R.drawable.right};
     String[] icon_name = new String[]{"Handler", "Service", "Broadcast", "Content\nProvider",
             "File IO", "ListView\nViewHodler", "ScrollView", "ViewPager", "Fragment",
-            "View\nFlipper", "WebView", "AsyncTask", "Animation", "RecyclerView", "summary"};
+            "View\nFlipper", "WebView", "AsyncTask", "Animation", "RecyclerView", "WeatherWidget", "Summary"};
     String url = "http://www.baidu.com";
 
     @Override
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent3to4 = new Intent(MainActivity.this, RecyclerViewActivity.class);
                     startActivityForResult(intent3to4, 13);
                 }
-                if (position == 14) {
+                if (position == 15) {
                     Intent intent3to4 = new Intent(MainActivity.this, ProgressbarActivity.class);
                     startActivityForResult(intent3to4, 14);
                 }
