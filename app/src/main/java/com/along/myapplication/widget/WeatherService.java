@@ -18,15 +18,19 @@ import com.amap.api.services.weather.WeatherSearch;
 import com.amap.api.services.weather.WeatherSearchQuery;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class WeatherService extends Service implements WeatherSearch.OnWeatherSearchListener {
-
+    private String  weather;
     private WeatherSearchQuery mquery;
     private WeatherSearch mweathersearch;
     private LocalWeatherLive weatherlive;
     private LocalWeatherForecast weatherforecast;
     private List<LocalDayWeatherForecast> forecastlist = null;
     private String cityname="上海市";//天气搜索的城市，可以写名称或adcode；
+    private Timer mTimer;
+
 
 
     public WeatherService() {
@@ -44,14 +48,23 @@ public class WeatherService extends Service implements WeatherSearch.OnWeatherSe
         init();
         searchliveweather();
         searchforcastsweather();
+        mTimer = new Timer();
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                updateViews();
+            }
+        },0,1000000);
     }
 
     private void updateViews() {
 
-        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.my_widget);
-        remoteViews.setTextViewText(R.id.appwidget_text,"jjj");
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.weather_widget);
+        searchliveweather();
+        searchforcastsweather();
+        remoteViews.setTextViewText(R.id.weather,weather);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
-        ComponentName componentName = new ComponentName(getApplicationContext(),MyWidget.class);
+        ComponentName componentName = new ComponentName(getApplicationContext(),WeatherWidget.class);
         appWidgetManager.updateAppWidget(componentName,remoteViews);
     }
 
@@ -66,7 +79,7 @@ public class WeatherService extends Service implements WeatherSearch.OnWeatherSe
 //        forecasttv=(TextView)findViewById(R.id.forecast);
 //        reporttime1 = (TextView)findViewById(R.id.reporttime1);
 //        reporttime2 = (TextView)findViewById(R.id.reporttime2);
-//        weather = (TextView)findViewById(R.id.weather);
+//         weather = (TextView)findViewById(R.id.weather);
 //        Temperature = (TextView)findViewById(R.id.temp);
 //        wind=(TextView)findViewById(R.id.wind);
 //        humidity = (TextView)findViewById(R.id.humidity);
@@ -94,7 +107,7 @@ public class WeatherService extends Service implements WeatherSearch.OnWeatherSe
             if (weatherLiveResult != null && weatherLiveResult.getLiveResult() != null) {
                 weatherlive = weatherLiveResult.getLiveResult();
 //                reporttime1.setText(weatherlive.getReportTime()+"发布");
-//                weather.setText(weatherlive.getWeather());
+                weather = weatherlive.getWeather();
 //                Temperature.setText(weatherlive.getTemperature()+"°");
 //                wind.setText(weatherlive.getWindDirection()+"风     "+weatherlive.getWindPower()+"级");
 //                humidity.setText("湿度         "+weatherlive.getHumidity()+"%");

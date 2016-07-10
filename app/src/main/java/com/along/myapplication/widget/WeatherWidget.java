@@ -19,7 +19,7 @@ public class WeatherWidget extends AppWidgetProvider {
         CharSequence widgetText = "天气";
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.weather_widget);
-        views.setTextViewText(R.id.weather_text, widgetText);
+        views.setTextViewText(R.id.weather, widgetText);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
