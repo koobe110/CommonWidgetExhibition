@@ -98,6 +98,7 @@ public class ProgressbarActivity extends Activity implements View.OnClickListene
                 break;
             }
         }
+        //1 M
         int first = progressBar.getProgress();
         int second = progressBar.getSecondaryProgress();
         displayProgress.setText("第一进度条：" + first / 100 + "%   第二进度条：" + second / 100 + "%");
