@@ -102,6 +102,7 @@ public class ProgressbarActivity extends Activity implements View.OnClickListene
         int second = progressBar.getSecondaryProgress();
         displayProgress.setText("第一进度条：" + first / 100 + "%   第二进度条：" + second / 100 + "%");
         //test rebase on master 1
+        //test rebase on master 2
     }
 
     public void showMyToast(final Toast toast, final int cnt) {
